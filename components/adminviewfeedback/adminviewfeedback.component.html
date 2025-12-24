@@ -1,0 +1,44 @@
+<app-adminnav></app-adminnav>
+<div *ngIf="feedbacks.length == 0">
+    No Feedbacks
+</div>
+<div *ngIf="feedbacks.length > 0">
+    <body>
+        <div class="container">
+            <h2 class="text-center">User Feedbacks</h2>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>User Name</th>
+                        <th>Feedback</th>
+                        <th>Posted Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of feedbacks; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{f.user.username}}</td>
+                        <td>{{f.feedbackText}}</td>
+                        <td>{{f.date}}</td>
+                        <td>
+                            <button class="btn btn-info btn-sm" (click)="showMore(f)">Show Profile</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</div>
+<div *ngIf="selectedFeedback" class="modal" style="text-align: center;">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>User Details</h2>
+        <p><strong>Email:</strong> {{ selectedFeedback.user.email}}</p>
+        <p><strong>Username:</strong> {{ selectedFeedback.user.username}}</p>
+        <p><strong>Mobile:</strong> {{ selectedFeedback.user.mobileNumber}}</p>
+        <button class="btn btn-secondary" (click)="goBack()"> Back</button>
+    </div>
+</div>

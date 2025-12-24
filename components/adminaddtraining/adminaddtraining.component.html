@@ -1,0 +1,132 @@
+<app-adminnav></app-adminnav>
+<style>
+    .success-message {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        text-align: center;
+    }
+
+
+    .success-message.active {
+        display: block;
+    }
+
+    .form-box {
+        display: block;
+    }
+
+
+    .form-box.hidden {
+        display: none;
+    }
+</style>
+ 
+<div>
+
+    <h2>Create New Training</h2>
+    <form [formGroup]="trainingForm" (ngSubmit)="addTraining()">
+        <div>
+            <label for="trainingName">Training Name: </label>
+            <input type="text" id="trainingName" formControlName="trainingName" class="form-control">
+            <div *ngIf="f.trainingName.invalid && (f.trainingName.touched || f.trainingName.dirty)"
+                class="error-message">
+                <div *ngIf="f.trainingName.errors?.required">
+                    Training Name is required.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="description">Description: </label>
+            <input type="text" id="description" formControlName="description" class="form-control">
+            <div *ngIf="f.description.invalid && (f.description.touched || f.description.dirty)" class="error-message">
+                <div *ngIf="f.description.errors?.required">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="trainerName">Trainer Name:</label>
+            <input type="text" id="trainerName" formControlName="trainerName" class="form-control">
+            <div *ngIf="f.trainerName.invalid && (f.trainerName.touched || f.trainerName.dirty)" class="error-message">
+                <div *ngIf="f.trainerName.errors?.required">
+                    Trainer Name is required.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="location">Location: </label>
+            <input type="text" id="location" formControlName="location" class="form-control">
+            <div *ngIf="f.location.invalid && (f.location.touched || f.location.dirty)" class="error-message">
+                <div *ngIf="f.location.errors?.required">
+                    Location is required.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="isIndoor">Indoor/Outdoor: </label>
+            <select id="isIndoor" formControlName="isIndoor" class="form-control">
+                <option value="indoor">Indoor</option>
+                <option value="outdoor">Outdoor</option>
+            </select>
+            <div *ngIf="f.isIndoor.invalid && (f.isIndoor.touched || f.isIndoor.dirty)" class="error-message">
+                <div *ngIf="f.isIndoor.errors?.required">
+                    Indoor/Outdoor selection is required.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="fee">Fee: </label>
+            <input type="number" id="fee" formControlName="fee" class="form-control">
+            <div *ngIf="f.fee.invalid && (f.fee.touched || f.fee.dirty)" class="error-message">
+                <div *ngIf="f.fee.errors?.required">
+                    Fee is required.
+                </div>
+                <div *ngIf="f.fee.errors?.min">
+                    Fee should be greater than 0.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="focusArea">Focus Area: </label>
+            <input type="text" id="focusArea" formControlName="focusArea" class="form-control">
+            <div *ngIf="f.focusArea.invalid && (f.focusArea.touched || f.focusArea.dirty)" class="error-message">
+                <div *ngIf="f.focusArea.errors?.required">
+                    Focus Area is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="physicalRequirements">Physical Requirements: </label>
+            <input type="text" id="physicalRequirements" formControlName="physicalRequirements" class="form-control">
+            <div *ngIf="f.physicalRequirements.invalid && (f.physicalRequirements.touched || f.physicalRequirements.dirty)"
+                class="error-message">
+                <div *ngIf="f.physicalRequirements.errors?.required">
+                    Physical Requirements are required.
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button> <br> <br>
+        <div *ngIf="formSubmitted && trainingForm.invalid" class="text">*All fields are required</div>
+    </form>
+</div>
+ 
+<div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to log out?</p>
+        <button (click)="confirmLogout()">Yes, Logout</button>
+        <button (click)="cancelLogout()">Cancel</button>
+    </div>
+</div>
+
+<div class="success-message" id="successMessage" *ngIf="trainingForm.valid">
+    <p>Successfully Added!</p>
+    <button (click)="closeSuccessMessage()">OK</button>
+</div>

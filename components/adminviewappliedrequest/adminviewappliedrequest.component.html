@@ -1,0 +1,90 @@
+<app-adminnav></app-adminnav>
+<div class="container">
+  <h2>Training Requests for Approval</h2>
+
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="searchText">Search By:</label>
+      <input type="text" id="searchText" [(ngModel)]="searchText" class="form-control" placeholder="Training Name">
+    </div>
+
+    <div class="form-group">
+      <label for="status" class="filter">Filter By Status:</label>
+      <select #abc (change)="sort(abc.value)">
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Username</th>
+        <th>Training Name</th>
+        <th>Location</th>
+        <th>Submission Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests | adminSearch : searchText : ['trainingName']; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{request.user.username}}</td>
+        <td>{{request.physicalTraining.trainingName}}</td>
+        <td>{{request.physicalTraining.location}}</td>
+        <td>{{request.requestDate}}</td>
+        <td [style.color]="style(request.status)">{{request.status}}</td>
+        <td>
+          <button (click)="showMore(request)" class="btn btn-info btn-sm">Show More</button>
+          <button 
+            (click)="approved(request)" 
+            class="btn btn-success btn-sm" 
+            [disabled]="isActionDisabled(request.status)" 
+            [ngClass]="{'disabled-button': isActionDisabled(request.status)}">
+            Approve
+          </button>
+          <button 
+            (click)="rejected(request)" 
+            class="btn btn-danger btn-sm" 
+            [disabled]="isActionDisabled(request.status)" 
+            [ngClass]="{'disabled-button': isActionDisabled(request.status)}">
+            Reject
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="requests.length === 0">
+        <td colspan="7" class="records">No data available</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="toShow" class="modal" style="text-align: center;">
+    <div class="modal-content">
+      <h4>Training Request Details</h4>
+      <p><strong>Username:</strong> {{ show.user.username }}</p>
+      <p><strong>Training Name:</strong> {{ show.physicalTraining.trainingName }}</p>
+      <p><strong>Location:</strong> {{ show.physicalTraining.location }}</p>
+      <p><strong>Submission Date:</strong> {{ show.requestDate }}</p>
+      <p><strong>Status:</strong> {{ show.status }}</p>
+      <p><strong>Description:</strong> {{ show.description }}</p>
+      <p><strong>Health Conditions:</strong> {{show.healthConditions}}</p>
+      <p><strong>FitnessGoals:</strong>{{show.fitnessGoals}}</p>
+      <p><strong>Comments:</strong>{{show.comments}}</p>
+      <button (click)="back()" class="btn btn-primary">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="rejectRequest" class="modal" style="text-align: center;">
+    <div class="modal-content">
+      <h4>Reason for Rejection</h4>
+      <textarea [(ngModel)]="rejectReason" class="form-control" rows="3" cols="50" placeholder="Enter reason for rejection"></textarea><br>
+      <button (click)="back()" class="btn btn-primary">Back</button>
+      <button (click)="confirmRejection()" class="btn btn-danger">Reject</button>
+    </div>
+  </div>
+</div>

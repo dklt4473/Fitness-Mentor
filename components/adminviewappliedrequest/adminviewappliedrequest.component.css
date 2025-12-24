@@ -1,0 +1,170 @@
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.yellow {
+    color: orange;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+
+input[type="text"],
+select {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table,
+.table th,
+.table td {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dcdcdc;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.records {
+    text-align: center;
+    color: #777;
+}
+
+
+button.btn-info,
+button.btn-success,
+button.btn-danger {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+button.btn-info {
+    background-color: #17a2b8;
+}
+
+button.btn-info:hover {
+    background-color: #117a8b;
+}
+
+button.btn-success {
+    background-color: #28a745;
+}
+
+button.btn-success:hover {
+    background-color: #218838;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+button.btn-info,
+button.btn-success,
+button.btn-primary {
+    padding: 8px 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: rgb(197, 192, 192);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.disabled-button {
+    opacity: 0.5;
+    pointer-events: none; /* This makes sure the button cannot be clicked */
+  }
+  

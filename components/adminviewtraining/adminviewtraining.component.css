@@ -1,0 +1,163 @@
+.container {
+    max-width: 1000px;
+    margin: 50px auto; 
+    padding: 20px;
+    border: 1px solid #dcdcdc; 
+    border-radius: 10px;
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+ 
+.navbar-links a {
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-size: 1em;
+}
+ 
+.navbar-links a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+}
+ 
+.logout-btn {
+    padding: 10px 20px;
+    background-color: red;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.logout-btn:hover {
+    background-color: #e84118;
+}
+ 
+h2 {
+    text-align: center;
+    
+    margin: 20px 0;
+    color: #333;
+}
+ 
+input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+ 
+select {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+ 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0px;
+
+}
+ 
+table, th, td {
+    border: 1px solid #ddd;
+}
+ 
+ 
+ 
+th,
+td {
+
+    padding: 10px;
+    text-align: left;
+}
+ 
+th {
+    background-color: #f4f4f4;
+}
+
+
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #c0392b ;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+} 
+ 
+div *ngIf {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+ 
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+ 
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+ 
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+ 
+.modal-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+
+button.btn-info {
+    background-color: #17a2b8;
+}
+ 
+button.btn-info:hover {
+    background-color: #117a8b;
+}

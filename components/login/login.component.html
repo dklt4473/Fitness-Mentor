@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="login-container">
+
+  <div class="login-background"></div>
+  <div class="login-form-wrapper">
+    <h2 class="text-center text-primary">FitMentor</h2>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <div>
+        <h3 class="text-center text-primary">Login</h3>
+        <input type="email" id="username" name="username" [(ngModel)]="email" #emailInput="ngModel" placeholder="Email"
+          required email>
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error-message">
+          <div *ngIf="emailInput.errors?.required">Email is required</div>
+          <div *ngIf="emailInput.errors?.email">Enter a valid email</div>
+        </div>
+      </div>
+      <div class="password-container">
+        <input [type]="passwordField" id="password" name="password" [(ngModel)]="password"
+            #passwordInput="ngModel" placeholder="Password" required minlength="8">
+        <img  [src]="passwordField === 'password' ? 'assets/images/eye-slash.png' : 'assets/images/eye.png'"
+            (click)="togglePasswordVisibility()" class="password-toggle-icon" alt="no pic"/>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+            <div *ngIf="passwordInput.errors?.required">Password is required</div>
+            <div *ngIf="passwordInput.errors?.minlength">Password must be at least 8 characters.</div>
+        </div>
+    </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div class="signup-link">
+      <p>Don't have an account?<a routerLink="/signup"> Signup</a></p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showSuccessPopup" class="modal">
+  <div class="modal-content">
+    <h3 class="testi">Login Successful!</h3>
+    <button (click)="closePopup()" class="okbtn">OK</button>
+  </div>
+
+</div>
+<div *ngIf="errorPopup" class="modal">
+  <div class="modal-content">
+    <h3 class="testi">Invalid Credentials!</h3>
+    <button (click)="closePopup()" class="okbtn">OK</button>
+  </div>
+</div>

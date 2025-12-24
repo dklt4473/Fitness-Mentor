@@ -1,0 +1,66 @@
+
+<app-adminnav></app-adminnav>
+<div *ngIf="!showModal" class="container">
+    <h1>Training Sessions</h1>
+
+    Search by: <input type="text" name="search" id="search" [(ngModel)]="filter" placeholder="Training Name">
+    <label>Sort Based On: </label>
+    <select #trainingFrom (change)="sortData(trainingFrom.value)">
+        <option value="trainingName">Training Name</option>
+        <option value="trainerName">Trainer Name</option>
+        <option value="location">Location</option>
+        <option value="fee">Fee</option>
+        <option value="focusArea">Focus Area</option>
+ 
+    </select>
+ 
+    <div *ngIf="!physicalTrainings">
+        No Records Found
+       
+    </div>
+    <div *ngIf="physicalTrainings">
+ 
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Training Name</th>
+                    <th>Location</th>
+                    <th>Trainer Name</th>
+                    <th>Fee</th>
+                    <th>Focus Area</th>
+                    <th>IsIndoor</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let training of physicalTrainings | adminFilter : filter : ['trainingName','description','focusArea'] ">
+                    <td>{{training.physicalTrainingId}}</td>
+                    <td>{{training.trainingName}}</td>
+                    <td>{{training.location}}</td>
+                    <td>{{training.trainerName}}</td>
+                    <td>{{training.fee}}</td>
+                    <td>{{training.focusArea}}</td>
+                    <td>{{training.isIndoor}}</td>
+                    <td>{{training.description}}</td>
+                    <td>
+                        <button (click)="deleteTraining(training.physicalTrainingId)">Delete</button>
+                        <button class="btn-info" (click)="editTraining(training.physicalTrainingId)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn-info" routerLink="/admin/addTraining">Add Training</button>
+    </div>
+</div>
+ 
+<div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to log out?</p>
+        <button (click)="confirmLogout()">Yes, Logout</button>
+        <button (click)="cancelLogout()">Cancel</button>
+    </div>
+</div>
+ 

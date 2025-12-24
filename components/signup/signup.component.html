@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<div class="signup-container">
+    <div class="signup-background"></div>
+    <div class="signup-form-wrapper">
+      <h3 class="text-center text-primary">Sign Up</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input type="text" id="username" name="username" formControlName="username" placeholder="Username" required><br>
+        <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="error-message">
+          <div *ngIf="f.username.errors?.required">Username is required</div>
+        </div><br>
+        <input type="email" name="email" formControlName="email" placeholder="Email" required><br>
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="error-message">
+          <div *ngIf="f.email.errors?.required">Email is required</div>
+          <div *ngIf="f.email.errors?.email">Please enter a valid email.</div>
+        </div><br>
+        <input type="password" id="password" name="password" formControlName="password" placeholder="Password" required><br>
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="error-message">
+          <div *ngIf="f.password.errors?.required">Password is required</div>
+          <div *ngIf="f.password.errors?.minlength">Password should have minimum 8 character</div>
+          <div *ngIf="registerForm.get('password').hasError('passwordComplexity')">Password should contain uppercase, lowercase, and special characters</div>
+        </div><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" required><br>
+        <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.touched || f.confirmPassword.dirty)" class="error-message">
+          <div *ngIf="f.confirmPassword.errors?.required">Confirm Password is required</div>
+        </div>
+        <div *ngIf="f.confirmPassword.dirty" class="error-message">
+          <div *ngIf="registerForm.value.confirmPassword != registerForm.value.password">Password Mismatch</div>
+        </div><br>
+        <input type="text" id="mobileNumber" name="mobileNumber" formControlName="mobileNumber" placeholder="Mobile Number" required><br>
+        <div *ngIf="f.mobileNumber.invalid && (f.mobileNumber.dirty || f.mobileNumber.touched)" class="error-message">
+          <div *ngIf="f.mobileNumber.errors?.required">Mobile Number is required</div>
+          <div *ngIf="f.mobileNumber.errors?.pattern">Mobile number should start with 6-9 and contain 10 digits</div>
+        </div><br>
+        <select name="userRole" formControlName="userRole">
+          <option value="" disabled selected>Select Role</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select><br>
+        <div *ngIf="f.userRole.invalid && (f.userRole.dirty || f.userRole.touched)" class="error-message">
+          <div *ngIf="f.userRole.errors?.required">Role is required</div>
+        </div><br>
+        <div *ngIf="registerForm.value.userRole === 'Admin'">
+          <input type="text" id="employeeId" name="employeeId" formControlName="employeeId" placeholder="Employee ID"><br>
+          <div *ngIf="f.employeeId.invalid && (f.employeeId.dirty || f.employeeId.touched)" class="error-message">
+            <div *ngIf="registerForm.hasError('invalidEmployeeIdFormat')">Invalid Employee ID format. Format should be EMP followed by 3-5 digits.</div>
+            <div *ngIf="registerForm.hasError('invalidEmployeeId')">Invalid Employee ID. Only predefined Admins can register as Admins.</div>
+          </div><br>
+        </div>
+        <button type="submit" class="btn btn-primary">Signup</button>
+      </form>
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/login">Login</a></p>
+      </div>
+    </div>
+    <div *ngIf="showSuccessPopup" class="modal">
+      <div class="modal-content">
+        <h3 class="testi">Registration Successful!</h3>
+        <button (click)="closePopup()" class="okbtn">OK</button>
+      </div>
+    </div>
+    <div *ngIf="errorPopup" class="modal">
+      <div class="modal-content">
+        <h3 class="testi">Email Already exists</h3>
+        <button (click)="closepop()" class="okbtn">OK</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  

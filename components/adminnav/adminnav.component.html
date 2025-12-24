@@ -1,0 +1,46 @@
+
+
+ 
+ 
+<body>
+  <div *ngIf="!showModal" class="navbar custom-navbar">
+ 
+    <h1 class="navbar-brand">FitMentor</h1>
+ 
+    <div class="navbar-right">
+      <h3 class="username-color">Admin - <span class="username special-username">{{user.username}}</span></h3>
+      <ul class="navbar-menu">
+        <li><a routerLink="/home" class="home">Home</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" (click)="toggleTraining()">Trainings</button>
+          <ul *ngIf="showTraining" class="dropdown-menu">
+            <li><a routerLink="/admin/addTraining">Add Training</a></li>
+            <li><a routerLink="/admin/viewTraining">View Training</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/admin/viewRequest">Training Requested</a></li>
+        <li><a routerLink="/admin/viewFeedback">Feedbacks</a></li>
+      </ul>
+ 
+      <button class="logout-btn" (click)="logout();">Logout</button>
+ 
+ 
+ 
+    </div>
+  </div>
+ 
+   
+ 
+   
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to log out?</p>
+      <button (click)="confirmLogout()" class="logout-btn green-btn">Yes</button>
+      <button (click)="cancelLogout()" class="logout-btn red-btn">Cancel</button>
+    </div>
+  </div>
+</body>
+ 
+ 
+ 
+ 

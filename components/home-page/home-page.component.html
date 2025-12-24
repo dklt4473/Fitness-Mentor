@@ -1,0 +1,97 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMentor</title>
+  </head>
+  
+  <body>
+    <div class="container">
+      <!-- Navigation Bar -->
+      <nav class="navbar-container">
+        <div class="navbar-brand">
+          <img src="/assets/images/logo.png" alt="FitMentor Logo">
+          <h1>FitMentor</h1>
+        </div>
+        <ul *ngIf="!getLoginInfo()">
+          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/signup">Sign Up</a></li>
+          <li><a routerLink="/about">About Us</a></li>
+        </ul>
+        <ul *ngIf="getLoginInfo()">
+          <li *ngIf="userRole === 'admin' || userRole === 'Admin'"><a routerLink="/adminnav">Admin</a></li>
+          <li *ngIf="userRole === 'user' || userRole === 'User'"><a routerLink="/usernav">User</a></li>
+          <li><button (click)="logout()" class="logout-btn">Logout</button></li>
+        </ul>
+      </nav>
+  
+      <div *ngIf="!selectedSection">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-content">
+            <h1>Welcome to FitMentor</h1>
+            <p>Your journey to being healthy begins with us. FitMentor offers a wide range of training options, from strength conditioning and flexibility improvement to specialized programs like yoga and high-intensity interval training.</p>
+          </div>
+        </div>
+  
+        <!-- Custom Container -->
+        <div class="custom-container">
+          <div class="usp" (click)="showInfo('strengthTraining')" (mouseenter)="hoverEffect($event)" (mouseleave)="resetEffect($event)">
+            <h3>Strength Training</h3>
+            <p>Build your strength and stamina with our expert-guided training sessions.</p>
+          </div>
+          <div class="usp" (click)="showInfo('flexibilityImprovement')" (mouseenter)="hoverEffect($event)" (mouseleave)="resetEffect($event)">
+            <h3>Flexibility Improvement</h3>
+            <p>Improve your flexibility and reduce the risk of injuries with our yoga sessions.</p>
+          </div>
+          <div class="usp" (click)="showInfo('hiitWorkouts')" (mouseenter)="hoverEffect($event)" (mouseleave)="resetEffect($event)">
+            <h3>HIIT Workouts</h3>
+            <p>Burn calories and boost your metabolism with our high-intensity interval training.</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Info Section -->
+      <div *ngIf="selectedSection" class="info-section">
+        <button class="close-btn" (click)="closeInfo()">&#10006;</button>
+        <h2>{{ sections[selectedSection].title }}</h2>
+        <p>{{ sections[selectedSection].details }}</p>
+      </div>
+  
+      <!-- Footer -->
+      <footer class="footer-container">
+        <div class="footer-top">
+          <div class="footer-logo">
+            <img src="/assets/images/logo.png" alt="FitMentor Logo">
+            <p>FitMentor is your ultimate companion on the journey to health and wellness.</p>
+          </div>
+          <div class="footer-links">
+            <div>
+              <p><a routerLink="/bmiCalculator">BMI Calculator</a></p><br>
+              <p><a routerLink="/privacyPolicy">Privacy Policy</a></p>
+            </div>
+          </div>
+          <div class="footer-social">
+            <h3>Follow Us</h3>
+            <ul>
+              <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+              <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+              <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+              <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 FitMentor. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  
+    <!-- Logout Modal -->
+    <div *ngIf="showModal" class="modal">
+      <div class="modal-content">
+        <p>Are you sure you want to log out?</p>
+        <button (click)="confirmLogout()" class="logout-btn green-btn">Yes, Logout</button>
+        <button (click)="cancelLogout()" class="logout-btn red-btn">Cancel</button>
+      </div>
+    </div>
+  </body>
+  
